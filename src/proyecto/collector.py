@@ -3,10 +3,20 @@ import pandas as pd
 from bs4 import BeautifulSoup
 from logger import Logger
 import os
+import time
+from datetime import datetime, timedelta
 
 class Collector:
     def __init__(self, logger):
-        self.url = 'https://es.finance.yahoo.com/quote/6A%3DF/history/?period1=973659600&period2=1746573611'
+        # Generar timestamps para fechas dinámicas (desde el 8 de noviembre de 2000 hasta hoy)
+        fecha_inicio = datetime(2000, 11, 8)
+        fecha_fin = datetime.now()
+        period1 = int(time.mktime(fecha_inicio.timetuple()))
+        period2 = int(time.mktime(fecha_fin.timetuple()))
+
+        # Construir la URL con los timestamps actualizados
+        self.url = f'https://es.finance.yahoo.com/quote/6A%3DF/history/?period1={period1}&period2={period2}'
+        #self.url = 'https://es.finance.yahoo.com/quote/6A%3DF/history/?period1=973659600&period2=1746573611'
         self.logger = logger
 
         # Crear carpetas si no existen
@@ -44,20 +54,23 @@ class Collector:
                     'Volumen':'volumen'
                 })
             
-            # Limpiar y convertir valores numéricos
-            for col in ['abrir', 'max', 'min', 'cerrar', 'cierre_ajustado']:
-                df[col] = df[col].str.replace('.', '', regex=False).str.replace(',', '.', regex=False)
-                df[col] = pd.to_numeric(df[col], errors='coerce')
-
             # Limpiar volumen
             df['volumen'] = df['volumen'].replace('-', '0')  # Si hay guiones que significan "sin volumen"
 
-            # Convertir fecha y extraer año, mes, día
+            # Traducir meses en español a inglés para que datetime los entienda
+            meses_esp_a_eng = {
+                'ene': 'Jan', 'feb': 'Feb', 'mar': 'Mar', 'abr': 'Apr',
+                'may': 'May', 'jun': 'Jun', 'jul': 'Jul', 'ago': 'Aug',
+                'sep': 'Sep', 'oct': 'Oct', 'nov': 'Nov', 'dic': 'Dec'
+            }
+            df['fecha'] = df['fecha'].replace(meses_esp_a_eng, regex=True)
+
+            # Convertir fecha
             df['fecha'] = pd.to_datetime(df['fecha'], format='%d %b %Y', errors='coerce')
-            df = df.dropna(subset=['fecha'])  # Elimina las filas con fecha NaT
-            df['año'] = df['fecha'].dt.year.astype(int)
-            df['mes'] = df['fecha'].dt.month.astype(int)
-            df['dia'] = df['fecha'].dt.day.astype(int)
+
+            df['año'] = df['fecha'].dt.year.astype('Int64')
+            df['mes'] = df['fecha'].dt.month.astype('Int64')
+            df['dia'] = df['fecha'].dt.day.astype('Int64')
 
             self.logger.info("Collector", "collector_data", f"Datos recolectados exitosamente: {df.shape[0]} filas.")
             return df
