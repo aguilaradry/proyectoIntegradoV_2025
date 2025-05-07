@@ -26,18 +26,21 @@ class Collector:
                 self.logger.error("Collector", "collector_data","Error al buscar la tabla data-testid=history-table")
                 return df
             headers_list = [th.get_text(strip=True) for th in table.thead.find_all('th')]
+            self.logger.info("Collector", "collector_data", f"Columnas obtenidas de la tabla: {headers_list}")
+
             rows=[]
             for tr in table.tbody.find_all('tr'):
                 colums = [td.get_text(strip=True) for td in tr.find_all('td')]
                 if len(colums) == len(headers_list):
                     rows.append(colums)
+                    
             df = pd.DataFrame(rows,columns=headers_list).rename(columns={
                     'Fecha':'fecha',
                     'Abrir':'abrir',
                     'Máx.':'max',
                     'Mín.':'min',
                     'CerrarPrecio de cierre ajustado para splits.':'cerrar',
-                    'Cierre ajustado':'cierre_ajustado',
+                    'Cierre ajustadoPrecio de cierre ajustado para splits y distribuciones de dividendos o plusvalías.':'cierre_ajustado',
                     'Volumen':'volumen'
                 })
             
@@ -46,15 +49,15 @@ class Collector:
                 df[col] = df[col].str.replace('.', '', regex=False).str.replace(',', '.', regex=False)
                 df[col] = pd.to_numeric(df[col], errors='coerce')
 
-            # Limpiar volumen (quitar comas, convertir a numérico)
-            df['volumen'] = df['volumen'].str.replace('.', '', regex=False).str.replace(',', '', regex=False)
-            df['volumen'] = pd.to_numeric(df['volumen'], errors='coerce')
+            # Limpiar volumen
+            df['volumen'] = df['volumen'].replace('-', '0')  # Si hay guiones que significan "sin volumen"
 
             # Convertir fecha y extraer año, mes, día
             df['fecha'] = pd.to_datetime(df['fecha'], format='%d %b %Y', errors='coerce')
-            df['año'] = df['fecha'].dt.year
-            df['mes'] = df['fecha'].dt.month
-            df['dia'] = df['fecha'].dt.day
+            df = df.dropna(subset=['fecha'])  # Elimina las filas con fecha NaT
+            df['año'] = df['fecha'].dt.year.astype(int)
+            df['mes'] = df['fecha'].dt.month.astype(int)
+            df['dia'] = df['fecha'].dt.day.astype(int)
 
             self.logger.info("Collector", "collector_data", f"Datos recolectados exitosamente: {df.shape[0]} filas.")
             return df
