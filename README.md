@@ -35,7 +35,7 @@ El indicador seleccionado corresponde al **dólar australiano (AUD/USD)**.
 |       └── main.py
 ├── docs/
 │   └── report_entrega1.pdf
-├── requirements.txt
+├── setup.py
 └── README.md
 
 ## Requisitos
