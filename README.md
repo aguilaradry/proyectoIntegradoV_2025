@@ -19,7 +19,7 @@ El indicador seleccionado corresponde al **dólar australiano (AUD/USD)**.
 - .github/workflows/update_data.yml: Workflow para actualizaciones automáticas
 
 
-<nombre_repositorio>/
+<PROYECTOINTEGRADOV_2025>/
 ├── .github/
 │   └── workflows/
 │       └── update_data.yml

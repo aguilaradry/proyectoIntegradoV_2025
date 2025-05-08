@@ -16,7 +16,6 @@ class Collector:
 
         # Construir la URL con los timestamps actualizados
         self.url = f'https://es.finance.yahoo.com/quote/6A%3DF/history/?period1={period1}&period2={period2}'
-        #self.url = 'https://es.finance.yahoo.com/quote/6A%3DF/history/?period1=973659600&period2=1746573611'
         self.logger = logger
 
         # Crear carpetas si no existen
