@@ -20,7 +20,7 @@ class Collector:
         self.logger = logger
 
         # Crear carpetas si no existen
-        os.makedirs('src/proyecto/static/data', exist_ok=True)
+        os.makedirs('src/indicador_economico/static/data', exist_ok=True)
 
     def collector_data(self):
         try:

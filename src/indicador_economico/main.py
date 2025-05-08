@@ -11,7 +11,7 @@ def main():
     collector = Collector(logger=logger)
     df = collector.collector_data()
     if not df.empty:
-        save_path = os.path.join('src', 'proyecto', 'static', 'data', 'historical.csv')
+        save_path = os.path.join('src', 'indicador_economico', 'static', 'data', 'historical.csv')
         df.to_csv(save_path, index=False)
         logger.info('Main', 'main', f'Datos guardados exitosamente en {save_path}')
     else:

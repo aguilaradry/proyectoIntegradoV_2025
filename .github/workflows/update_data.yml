@@ -28,7 +28,13 @@ jobs:
       - name: Paso 6 - instalar dependencias
         run: pip install -e .
       - name: Paso 7 - Ejecutar Script de main
-        run: python src/proyecto/main.py
+        run: python src/indicador_economico/main.py
+      
+      - name: Subir logs como artefacto
+        uses: actions/upload-artifact@v3
+        with:
+          name: logs-generados
+          path: logs/
 
       - name: Commit and Push changes
         uses: stefanzweifel/git-auto-commit-action@v5

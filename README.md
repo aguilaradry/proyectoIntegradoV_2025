@@ -3,6 +3,8 @@
 ## Descripción
 Este proyecto implementa un sistema automatizado para la recolección continua de datos históricos de indicadores económicos desde Yahoo Finanzas. Utiliza GitHub Actions para mantener actualizada la base de datos sin intervención manual.
 
+El indicador seleccionado corresponde al **dólar australiano (AUD/USD)**.
+
 ## Características
 - Descarga automatizada de datos históricos económicos
 - Persistencia de datos en formato CSV y SQLite
