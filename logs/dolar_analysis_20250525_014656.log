@@ -1,0 +1,3 @@
+[2025-05-25 01:46:56 | DolarAnalysis | Main | main | INFO] Inicializar clase Logger
+[2025-05-25 01:47:02 | DolarAnalysis | Collector | collector_data | INFO] Columnas obtenidas de la tabla: ['Fecha', 'Abrir', 'Máx.', 'Mín.', 'CerrarPrecio de cierre ajustado para splits.', 'Cierre ajustadoPrecio de cierre ajustado para splits y distribuciones de dividendos o plusvalías.', 'Volumen']
+[2025-05-25 01:47:02 | DolarAnalysis | Collector | collector_data | INFO] Datos recolectados exitosamente: 6138 filas.
