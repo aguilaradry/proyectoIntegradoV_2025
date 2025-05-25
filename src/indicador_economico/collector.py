@@ -60,7 +60,7 @@ class Collector:
             meses_esp_a_eng = {
                 'ene': 'Jan', 'feb': 'Feb', 'mar': 'Mar', 'abr': 'Apr',
                 'may': 'May', 'jun': 'Jun', 'jul': 'Jul', 'ago': 'Aug',
-                'sep': 'Sep', 'oct': 'Oct', 'nov': 'Nov', 'dic': 'Dec'
+                'sept': 'Sep', 'oct': 'Oct', 'nov': 'Nov', 'dic': 'Dec'
             }
             df['fecha'] = df['fecha'].replace(meses_esp_a_eng, regex=True)
 
