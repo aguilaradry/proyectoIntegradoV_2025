@@ -28,6 +28,16 @@ def main():
         # Entrenar el modelo con los datos enriquecidos
         modeller = Modeller(logger=logger)
         modeller.entrenar_modelo(df_enriched)
+
+        # Predicción
+        predicciones = modeller.predecir(df_enriched)
+
+        # Guardar las predicciones
+        df_enriched['prediccion'] = predicciones
+        pred_path = os.path.join('src', 'indicador_economico', 'static', 'data', 'predicciones.csv')
+        df_enriched.to_csv(pred_path, index=False)
+
+        logger.info('Main', 'main', f'Predicciones guardadas en {pred_path}')
     else:
         logger.warning('Main', 'main', 'El DataFrame está vacío. No se guardó el archivo.')
 
