@@ -32,9 +32,13 @@ class Enricher:
         df['retorno'] = df['cerrar'].pct_change()
         df['volatilidad_mensual'] = df.groupby(['año', 'mes'])['retorno'].transform('std')
 
-        # KPI Tendencia interanual YoY
+        # KPI Tendencia interanual YoY (comparación misma fecha del año anterior)
         try:
-            df['cerrar_yoy'] = df.groupby('mes')['cerrar'].transform(lambda x: x.pct_change(1))
+            df['fecha_anterior'] = df['fecha'] - pd.DateOffset(years=1)
+            df_yoy = df[['fecha', 'cerrar']].copy()
+            df_yoy.columns = ['fecha_anterior', 'cerrar_anterior']
+            df = df.merge(df_yoy, on='fecha_anterior', how='left')
+            df['cerrar_yoy'] = (df['cerrar'] - df['cerrar_anterior']) / df['cerrar_anterior']
         except Exception as e:
             self.logger.warning('Enricher', 'calcular_informacion_kpi', f'Error al calcular YoY: {e}')
             df['cerrar_yoy'] = np.nan

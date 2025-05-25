@@ -1,6 +1,7 @@
 from logger import Logger
 from collector import Collector
 from enricher import Enricher
+from modeller import Modeller
 import pandas as pd
 import os
 
@@ -23,6 +24,10 @@ def main():
         df.to_csv(save_path, index=False)
         
         logger.info('Main', 'main', f'Datos guardados exitosamente en {save_path}')
+
+        # Entrenar el modelo con los datos enriquecidos
+        modeller = Modeller(logger=logger)
+        modeller.entrenar_modelo(df_enriched)
     else:
         logger.warning('Main', 'main', 'El DataFrame está vacío. No se guardó el archivo.')
 
