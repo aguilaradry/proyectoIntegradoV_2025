@@ -10,6 +10,7 @@ setup(
     install_requires=[
         "pandas==2.2.3",
         "openpyxl",
+        "scikit-learn>=0.24.0",
         "requests==2.32.3",
         "beautifulsoup4==4.13.3"
     ]
