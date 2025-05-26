@@ -12,6 +12,10 @@ setup(
         "openpyxl",
         "scikit-learn>=0.24.0",
         "requests==2.32.3",
+        "streamlit",
+        "matplotlib",
+        "numpy",
+        "plotly",
         "beautifulsoup4==4.13.3"
     ]
 ) 

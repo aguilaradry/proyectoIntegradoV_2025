@@ -30,23 +30,34 @@ Este valor es seguido por inversores, economistas y empresas para anticipar movi
 <PROYECTOINTEGRADOV_2025>/
 ├── .github/
 │   └── workflows/
-│       └── update_data.yml             # Automatización con GitHub Actions
+│       └── update_data.yml                     # Automatización con GitHub Actions
 ├── src/
 │   └── <indicador_economico>/
 │       ├── static/
 │       │   ├── data/
-│       │   │   ├── historical.csv      # Dataset generado
-│       │   │   
-│       │   └── models/
-│       ├── collector.py                # Clase principal de recolección
-│       └── logger.py                   # Configuración de logs
-|       └── main.py                     # Punto de entrada del programa
+│       │   │   ├── dolar_data_enricher.csv     # Dataset enriquecido
+│       │   │   ├── historical.csv              # Dataset generado
+│       │   │   ├── predicciones.csv            # Resultados de predicciones generadas
+│       │   ├── models/
+│       │   │   └── model.pkl                   # Modelo entrenado serializado
+│       │   └── reports/
+│       │       ├── Dashboard.pdf               # Reporte PDF con capturas de gráficos
+│       │       └── metricas.txt                # Justificación de métricas del modelo
+│       ├── collector.py                        # Clase principal para recolección de datos
+│       ├── dashboard.py                        # Dashboard con visualización de datos históricos
+│       ├── dashboard_prediccion.py             # Dashboard con visualización de predicciones
+│       ├── enricher.py                         # Script para enriquecimiento y procesamiento de datos
+│       ├── logger.py                           # Configuración y manejo de logs
+|       ├── main.py                             # Punto de entrada del programa
+│       └── modeller.py                         # Entrenamiento y evaluación del modelo predictivo
+
 ├── docs/
-│   └── report_entrega1.pdf             # Documentación
+│   └── report_entrega1.pdf                    # Documentación y reporte de entrega
 ├── logs/
-│   └── dolar_analysis_20250508.log     # Registros de ejecución
-├── setup.py
-└── README.md
+│   └── dolar_analysis_20250508.log            # Registros y logs de ejecución
+├── setup.py                                   # Archivo de configuración e instalación
+└── README.md                                  # Documentación principal del proyecto
+
 
 ## Automatización con GitHub Actions
 Se creó un workflow en .github/workflows/update_data.yml que ejecuta el script principal (main.py) automáticamente al hacer push en la rama main. Además, realiza commit y push si se detectan cambios en los archivos generados. Esto garantiza que el historial de datos se mantenga actualizado sin intervención manual.
@@ -57,5 +68,14 @@ Se creó un workflow en .github/workflows/update_data.yml que ejecuta el script 
 - Requests 2.32.3
 - BeautifulSoup4
 - SQLite3
+
+## Ejecución del Dashboard
+Para visualizar los dashboards interactivos, instalar las dependencias del setup.py y usar los siguientes comandos desde la raíz del proyecto:
+
+**Dashboard de datos históricos:**
+streamlit run src/indicador_economico/dashboard.py
+
+**Dashboard de predicciones:**
+streamlit run src/indicador_economico/dashboard_prediccion.py
 
 Los datos recolectados se guardarán en src/proyecto/static/data/historical.csv y se registrarán eventos en la carpeta logs.

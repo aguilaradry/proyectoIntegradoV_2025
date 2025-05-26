@@ -34,7 +34,7 @@ jobs:
       - name: Commit and Push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: generación de los archivos de la evidencia 1
+          commit_message: generación de los archivos de la evidencia 1 y 2
           commit_user_name: Adriana Aguilar [GitHub Actions]
           commit_user_email: adriana.aguilar@est.iudigital.edu.co
           commit_author: Adriana Aguilar <adriana.aguilar@est.iudigital.edu.co>
