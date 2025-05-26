@@ -1,31 +1,36 @@
-JUSTIFICACIÓN DE LA MÉTRICA - RMSE (Root Mean Square Error):
+JUSTIFICACIÃ“N DE LA MÃ‰TRICA - RMSE (Root Mean Square Error):
 
-1. SENSIBILIDAD A OUTLIERS: RMSE penaliza más fuertemente los errores grandes,
-   lo cual es crucial en mercados financieros donde errores grandes pueden
-   representar pérdidas significativas.
+            1. SENSIBILIDAD A OUTLIERS: RMSE penaliza mÃ¡s fuertemente los errores grandes,
+            lo cual es crucial en mercados financieros donde errores grandes pueden
+            representar pÃ©rdidas significativas.
 
-2. INTERPRETABILIDAD: RMSE está en las mismas unidades que la variable objetivo,
-   facilitando la interpretación del error en términos del precio del activo.
+            2. INTERPRETABILIDAD: RMSE estÃ¡ en las mismas unidades que la variable objetivo,
+            facilitando la interpretaciÃ³n del error en tÃ©rminos del precio del activo.
 
-3. OPTIMIZACIÓN: Muchos algoritmos de ML optimizan MSE/RMSE por defecto,
-   lo que hace que sea consistente con el proceso de entrenamiento.
+            3. OPTIMIZACIÃ“N: Muchos algoritmos de ML optimizan MSE/RMSE por defecto,
+            lo que hace que sea consistente con el proceso de entrenamiento.
 
-4. COMPARABILIDAD: RMSE es ampliamente usado en finanzas cuantitativas,
-   permitiendo comparar nuestro modelo con benchmarks de la industria.
+            4. COMPARABILIDAD: RMSE es ampliamente usado en finanzas cuantitativas,
+            permitiendo comparar nuestro modelo con benchmarks de la industria.
 
-MÉTRICAS COMPLEMENTARIAS:
-   MAE: Menos sensible a outliers, da una idea del error típico.
+            MÃ‰TRICAS COMPLEMENTARIAS:
+            MAE: Menos sensible a outliers, da una idea del error tÃ­pico.
 
-   R²: Indica qué proporción de la varianza explica el modelo.
+            RÂ²: Indica quÃ© proporciÃ³n de la varianza explica el modelo.
 
-   Directional_Accuracy: Mide si el modelo predice correctamente la dirección del movimiento.
+            Directional_Accuracy: Mide si el modelo predice correctamente la direcciÃ³n del movimiento.
 
-MÉTRICAS DEL MODELO:
- - RMSE: 0.0189
-   En promedio, el modelo se equivoca por ± 0.0189 unidades monetarias (ej: pesos o dólares) en sus predicciones.
- - MAE : 0.0095
-   El error promedio absoluto del modelo es de 0.0095 unidades monetarias.
- - R²  : 0.9495
-   El modelo explica el 94.95% de la variabilidad del precio observado.
- - Directional Accuracy: 73.85%
-   Un Directional Accuracy del 73.85% significa que el modelo predice correctamente la dirección del movimiento en aproximadamente 3 de cada 4 casos.
+            MÃ‰TRICAS DEL MODELO:
+
+            - RMSE: 0.0190
+            En promedio, el modelo se equivoca por Â± 0.0190 unidades monetarias (ej: pesos o dÃ³lares) en sus predicciones.
+
+            - MAE : 0.0095
+            El error promedio absoluto del modelo es de 0.0095 unidades monetarias.
+
+            - RÂ²  : 0.9494
+            El modelo explica el 94.94% de la variabilidad del precio observado.
+            
+            - Directional Accuracy: 74.19%
+            Un Directional Accuracy del 74.19% significa que el modelo predice correctamente la direcciÃ³n del movimiento en aproximadamente 3 de cada 4 casos.
+            
