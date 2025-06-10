@@ -1,0 +1,7 @@
+[2025-06-10 19:02:08 | DolarAnalysis | Main | main | INFO] Inicializar clase Logger
+[2025-06-10 19:02:14 | DolarAnalysis | Collector | collector_data | INFO] Columnas obtenidas de la tabla: ['Fecha', 'Abrir', 'Máx.', 'Mín.', 'CerrarPrecio de cierre ajustado para splits.', 'Cierre ajustadoPrecio de cierre ajustado para splits y distribuciones de dividendos o plusvalías.', 'Volumen']
+[2025-06-10 19:02:15 | DolarAnalysis | Collector | collector_data | INFO] Datos recolectados exitosamente: 6149 filas.
+[2025-06-10 19:02:15 | DolarAnalysis | Enricher | calcular_informacion_kpi | INFO] Archivo enriquecido guardado en src\indicador_economico\static\data\dolar_data_enricher.csv
+[2025-06-10 19:02:15 | DolarAnalysis | Main | main | INFO] Datos guardados exitosamente en src\indicador_economico\static\data\historical.csv
+[2025-06-10 19:02:17 | DolarAnalysis | Modeller | entrenar_modelo | INFO] Modelo entrenado. RMSE: 0.02, MAE: 0.01, R2: 0.95, DA: 75.95%
+[2025-06-10 19:02:17 | DolarAnalysis | Main | main | INFO] Predicciones guardadas en src\indicador_economico\static\data\predicciones.csv
